@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1l1ra17738br"]
+
+[sub_resource type="Environment" id="Environment_vcrcx"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sa8e6"]
+
+[node name="BackGround" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vcrcx")
+camera_attributes = SubResource("CameraAttributesPractical_sa8e6")
