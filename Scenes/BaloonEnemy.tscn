@@ -66,14 +66,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aou8h"]
-size = Vector2(21, 48)
+size = Vector2(13, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1vci"]
 size = Vector2(20, 24)
 
 [node name="BaloonProp" type="CharacterBody2D"]
-collision_layer = 132
-collision_mask = 130
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_wmc4j")
 attack = 2
 
@@ -92,7 +92,7 @@ libraries = {
 
 [node name="CollisionShape2D(physics)" type="CollisionShape2D" parent="."]
 z_index = -2
-position = Vector2(0.5, 0)
+position = Vector2(0.5, -4)
 shape = SubResource("RectangleShape2D_aou8h")
 
 [node name="Area2D" type="Area2D" parent="."]

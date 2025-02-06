@@ -35,7 +35,6 @@ func initialize(x:bool):
 	
 func _physics_process(delta: float) -> void:
 	apply_central_force(get_direction()*get_accel())
-	print(get_contact_count())
 	pass # Replace with function body.
 
 func get_obj_name() -> String:
