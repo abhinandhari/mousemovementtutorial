@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ibg5icpkh52k"]
+[gd_scene load_steps=8 format=3 uid="uid://ibg5icpkh52k"]
 
-[ext_resource type="Texture2D" uid="uid://lfb6isjt1oux" path="res://SpriteSheet/Balloon Sprites.png" id="1_3mdv3"]
-[ext_resource type="Script" path="res://Scripts/Bodies/BaseEnemy.gd" id="1_pkrv3"]
+[ext_resource type="Script" path="res://Scripts/Bodies/BaseEnemy.gd" id="1_wmc4j"]
+[ext_resource type="Texture2D" uid="uid://lfb6isjt1oux" path="res://SpriteSheet/Balloon Sprites.png" id="2_d8p6h"]
 
 [sub_resource type="Animation" id="Animation_7vidc"]
 resource_name = "IdleBaloon"
@@ -68,13 +68,17 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aou8h"]
 size = Vector2(21, 48)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1vci"]
+size = Vector2(20, 24)
+
 [node name="BaloonProp" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("1_pkrv3")
+collision_layer = 132
+collision_mask = 130
+script = ExtResource("1_wmc4j")
+attack = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3mdv3")
+texture = ExtResource("2_d8p6h")
 hframes = 10
 vframes = 3
 region_enabled = true
@@ -86,7 +90,15 @@ libraries = {
 "": SubResource("AnimationLibrary_iquwe")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D(physics)" type="CollisionShape2D" parent="."]
 z_index = -2
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_aou8h")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D(hitbox)" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_l1vci")

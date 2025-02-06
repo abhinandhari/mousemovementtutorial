@@ -1,31 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://biwmo6l56milh"]
+[gd_scene load_steps=3 format=3 uid="uid://cgm7q2j76vlkt"]
 
-[ext_resource type="Script" path="res://Scripts/Bullets/BasicBullet.gd" id="1_257ut"]
+[ext_resource type="Script" path="res://Scripts/Bullets/Bullet.gd" id="1_ehfi2"]
 
-[sub_resource type="Gradient" id="Gradient_21aw3"]
-offsets = PackedFloat32Array(0, 0.972527, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 0.818681, 0.818681, 1, 1, 1, 1, 1)
-metadata/_snap_enabled = true
+[sub_resource type="CircleShape2D" id="CircleShape2D_chges"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_31xxx"]
-gradient = SubResource("Gradient_21aw3")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2tqk"]
-size = Vector2(48, 16)
-
-[node name="BasicBullet" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D"]
 z_index = -2
 collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 gravity_scale = 0.0
-script = ExtResource("1_257ut")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.0442001, 0.0441921)
-rotation = 1.5708
-scale = Vector2(0.182308, 14.9255)
-texture = SubResource("GradientTexture1D_31xxx")
+script = ExtResource("1_ehfi2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_q2tqk")
+shape = SubResource("CircleShape2D_chges")

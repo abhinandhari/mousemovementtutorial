@@ -5,8 +5,8 @@ class_name Bullet extends RigidBody2D
 @export var accel: float = 5.0
 @export var direction: Vector2 = Vector2.UP
 @export var cd: float = 1.0
+@export var isFriendly:bool = true
 
-signal hit_registered
 func get_speed() -> float:
 	return speed
 func get_lifetime() -> float:
@@ -14,7 +14,10 @@ func get_lifetime() -> float:
 func get_accel() -> float: 
 	return accel
 func get_direction() -> Vector2:
-	return direction
+	if(isFriendly):
+		return direction
+	else:
+		return -1 * direction
 func get_cd() -> float:
 	return cd
 func get_damage() -> int:
@@ -27,9 +30,13 @@ func _ready() -> void:
 	queue_free()  # Destroy the bullet
 	pass
 		
-func get_obj_name() -> String:
-	return "AbstractBullet(Override Required)"
+func initialize(x:bool):
+	isFriendly=x
 	
 func _physics_process(delta: float) -> void:
 	apply_central_force(get_direction()*get_accel())
-	
+	print(get_contact_count())
+	pass # Replace with function body.
+
+func get_obj_name() -> String:
+	return "AbstractBullet(Override Required)"

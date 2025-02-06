@@ -4,11 +4,14 @@ extends Bullet
  # Replace with function body.
 const damage :int = 10
 
-func _init():
+func initialize(isFriendly:bool):
+	self.isFriendly=isFriendly
 	speed= 125.0
 	lifetime= 30.0
 	accel = 250.0
 	cd=0.2
 	
 func get_obj_name() -> String:
-	return "BASICBULLET"
+	return GameUtils.bulletTypes[0]
+
+# Replace with function body.

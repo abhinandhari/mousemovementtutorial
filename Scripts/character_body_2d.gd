@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var max_x: float
 @export var min_y: float
 @export var max_y: float
-@export var bullet_scene : PackedScene = preload("res://Scenes/bullet.tscn")
+@export var bullet_scene : PackedScene = preload("res://Scenes/Bullet.tscn")
 var cooldown_active: bool =false
 var current_bullet : String = GameUtils.bulletTypes[0]
 var bullet: Bullet
@@ -35,8 +35,9 @@ func _process(delta):
 func shoot_bullet() -> void:
 	match current_bullet:
 		GameUtils.bulletTypes[0]:
-			bullet_scene.set_script("res://Scripts/Bullets/BasicBullet.gd")
+			bullet_scene=load("res://Scenes/BasicBullet.tscn")
 	bullet=bullet_scene.instantiate()
+	bullet.initialize(true)
 	bullet.position = self.global_position
 	get_tree().root.add_child(bullet)
 	await get_tree().create_timer(bullet.get_cd()).timeout
