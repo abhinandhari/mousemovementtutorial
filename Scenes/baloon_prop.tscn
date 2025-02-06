@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://ibg5icpkh52k"]
+
+[ext_resource type="Texture2D" uid="uid://lfb6isjt1oux" path="res://SpriteSheet/Balloon Sprites.png" id="1_3mdv3"]
+[ext_resource type="Script" path="res://Scripts/Bodies/BaseEnemy.gd" id="1_pkrv3"]
+
+[sub_resource type="Animation" id="Animation_7vidc"]
+resource_name = "IdleBaloon"
+length = 0.1667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0334333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(4, 6.5, 229, 145.5), Rect2(3, 6.5, 229, 145.5), Rect2(2, 6.5, 229, 145.5), Rect2(1, 6.5, 229, 145.5), Rect2(3, 6.5, 229, 145.5)]
+}
+
+[sub_resource type="Animation" id="Animation_7rns1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(4, 6.5, 229, 145.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iquwe"]
+_data = {
+"IdleBaloon": SubResource("Animation_7vidc"),
+"RESET": SubResource("Animation_7rns1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aou8h"]
+size = Vector2(21, 48)
+
+[node name="BaloonProp" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_pkrv3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3mdv3")
+hframes = 10
+vframes = 3
+region_enabled = true
+region_rect = Rect2(4, 6.5, 229, 145.5)
+region_filter_clip_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iquwe")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -2
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_aou8h")

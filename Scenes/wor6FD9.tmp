@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c48wctsck7o2e"]
+[gd_scene load_steps=10 format=3 uid="uid://c48wctsck7o2e"]
 
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_bnqrj"]
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_lu2qv"]
 [ext_resource type="Shader" path="res://Shaders/player.gdshader" id="2_ckafb"]
 [ext_resource type="Texture2D" uid="uid://lfb6isjt1oux" path="res://SpriteSheet/Balloon Sprites.png" id="3_qgoqb"]
@@ -76,15 +77,12 @@ _data = {
 
 [node name="World" type="Node2D"]
 use_parent_material = true
+script = ExtResource("1_bnqrj")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(576, 500)
 motion_mode = 1
 script = ExtResource("1_lu2qv")
-min_x = 100.0
-max_x = 1060.0
-min_y = 80.0
-max_y = 500.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 polygon = PackedVector2Array(0, 10, 20, 55, -20, 55)

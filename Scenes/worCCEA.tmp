@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://c48wctsck7o2e"]
+
+[ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_lu2qv"]
+[ext_resource type="Shader" path="res://Shaders/player.gdshader" id="2_ckafb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4qkv"]
+shader = ExtResource("2_ckafb")
+shader_parameter/border_width = 2.0
+shader_parameter/border_color = Vector4(1, 0, 0, 1)
+shader_parameter/time_speed = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t0skl"]
+
+[node name="World" type="Node2D"]
+use_parent_material = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(576, 500)
+motion_mode = 1
+script = ExtResource("1_lu2qv")
+min_x = 100.0
+max_x = 1060.0
+min_y = 80.0
+max_y = 500.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(0, 10, 20, 55, -20, 55)
+
+[node name="RGBBorder" type="Polygon2D" parent="Player"]
+material = SubResource("ShaderMaterial_r4qkv")
+color = Color(0, 0, 0, 1)
+offset = Vector2(0, -5)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 30, 60, -30, 60)
+
+[node name="BlackBody" type="Polygon2D" parent="Player/RGBBorder"]
+color = Color(0, 0, 0, 1)
+offset = Vector2(0, -5)
+antialiased = true
+polygon = PackedVector2Array(0, 10, 20, 55, -20, 55)
+
+[node name="WorldBoundary" type="StaticBody2D" parent="."]
+
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(600, 576)
+shape = SubResource("WorldBoundaryShape2D_t0skl")
+
+[node name="Top" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(600, 64)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_t0skl")
+
+[node name="Left" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(152, 320)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_t0skl")
+
+[node name="Right" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(1000, 320)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_t0skl")
