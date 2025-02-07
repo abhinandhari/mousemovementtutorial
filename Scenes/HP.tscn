@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://t57c7npkx3oa"]
+
+[sub_resource type="GDScript" id="GDScript_jmtxc"]
+script/source = "class_name Health extends Node
+@export var hp:int
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+func get_hp() -> int :
+	return hp
+func set_hp(x: int) -> void :
+	hp = x
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="HealthComponent" type="Node"]
+editor_description = "Health Component. Attach to things which require health values"
+script = SubResource("GDScript_jmtxc")

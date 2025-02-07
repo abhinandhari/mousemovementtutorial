@@ -1,31 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://biwmo6l56milh"]
 
 [ext_resource type="Script" path="res://Scripts/Bullets/BasicBullet.gd" id="1_medr2"]
+[ext_resource type="PackedScene" uid="uid://cgm7q2j76vlkt" path="res://Scenes/Bullet.tscn" id="2_n3hi5"]
 
 [sub_resource type="Gradient" id="Gradient_21aw3"]
 offsets = PackedFloat32Array(0, 0.972527, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.818681, 0.818681, 1, 1, 1, 1, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_31xxx"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x260g"]
 gradient = SubResource("Gradient_21aw3")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2tqk"]
-size = Vector2(48, 16)
-
-[node name="BasicBullet" type="RigidBody2D"]
-z_index = -2
-collision_layer = 2
-collision_mask = 4
-gravity_scale = 0.0
+[node name="BasicBullet" instance=ExtResource("2_n3hi5")]
+editor_description = "A basic bullet. It deals damage based on dmgcomponent, and Direction based on a simple Vector. Future may use a movement component."
 script = ExtResource("1_medr2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 position = Vector2(0.0442001, 0.0441921)
 rotation = 1.5708
 scale = Vector2(0.182308, 14.9255)
-texture = SubResource("GradientTexture1D_31xxx")
+texture = SubResource("GradientTexture1D_x260g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_q2tqk")
+[node name="DmgComponent" parent="." index="2"]
+dmg = 1

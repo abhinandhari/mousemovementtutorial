@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb7yxnxdq54xm"]
+
+[ext_resource type="Script" path="res://Scripts/CommonComponents/dmg.gd" id="1_vwwyb"]
+
+[node name="DmgComponent" type="Node"]
+editor_description = "Dmg Component. Attach to things which deal damage."
+script = ExtResource("1_vwwyb")

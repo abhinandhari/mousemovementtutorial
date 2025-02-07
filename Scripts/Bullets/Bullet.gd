@@ -6,7 +6,6 @@ class_name Bullet extends RigidBody2D
 @export var direction: Vector2 = Vector2.UP
 @export var cd: float = 1.0
 @export var isFriendly:bool = true
-
 func get_speed() -> float:
 	return speed
 func get_lifetime() -> float:
@@ -20,13 +19,12 @@ func get_direction() -> Vector2:
 		return -1 * direction
 func get_cd() -> float:
 	return cd
-func get_damage() -> int:
-	return 10
+	
 func _ready() -> void:
-	# TImer which destroys bullet after lifetime
 	linear_velocity = get_direction()*get_speed()
 	# Start a lifetime timer using the SceneTree timer system
-	await get_tree().create_timer(get_lifetime()).timeout  # Wait for 1 second
+	await get_tree().create_timer(get_lifetime()).timeout  # Wait for lifetime second
+	print($DmgComponent.dmg)
 	queue_free()  # Destroy the bullet
 	pass
 		
@@ -39,3 +37,4 @@ func _physics_process(delta: float) -> void:
 
 func get_obj_name() -> String:
 	return "AbstractBullet(Override Required)"
+	
